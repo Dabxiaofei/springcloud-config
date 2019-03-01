@@ -1,0 +1,32 @@
+server:
+  port: 9527
+
+spring:
+  application:
+    name: springcloud-zuul
+
+eureka:
+  client: #客户端注册进eureka服务列表内
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+  #      defaultZone: http://localhost:7001/eureka/,http://localhost.com:7002/eureka/,http://localhost.com:7003/eureka/
+  instance:
+    instance-id: springcloud-zuul
+    prefer-ip-address: true     #访问路径可以显示IP地址
+
+info:
+  app.name: springcloud-zuul
+  company.name: springcloud
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+
+zuul:
+  routes:
+    mydept.serviceId: springcloud-pro-dept
+    mydept.path: /mydept/**
+  ignored-services: "*"    #隐藏哪些？
+
+#    api-a:
+#      my: springcloud-pro-dept
+#      serviceId:
+
